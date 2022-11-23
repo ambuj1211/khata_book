@@ -227,7 +227,7 @@ void khata()
 	}
 }
 
-void password(void) // password management system { it check the password is correct or not if not then it give the option to reset password with your mobile number which you provide first time during making your}
+void password(void) // password management system { it check the password is correct or not if not then it give the option to reset password with your mobile number which you provide first time during making your profile}
 {
 	FILE *v;
 	char mob2[11], mob3[11];
@@ -236,9 +236,9 @@ void password(void) // password management system { it check the password is cor
 	int i;
 	char *abc;
 	double mob, mob1;
+start:
 	ptr = fopen("khata book\\user profile\\password.dat", "r");
 	fscanf(ptr, "%s", arr);
-start:
 	system("cls");
 	title();
 	printf("\n\n\n\n\t\t\t\t    Enter the password to login : ");
@@ -293,18 +293,21 @@ start:
 				title();
 				printf("\n\n\n");
 				printf("New password : ");
-				scanf("%[\n]", pass);
+				scanf("%s", pass);
+				
 				printf("Confirm password : ");
-				scanf("%[\n]", pas);
+				scanf("%s", pas);
 				if (strcmp(pass, pas) == 0)
 				{
 					fclose(ptr);
-					ptr = fopen("password.dat", "w");
+					ptr = fopen("khata book\\user profile\\password.dat", "w");
 					fprintf(ptr, pas);
 					printf("Reset successfully\n\n");
 					printf("Restart your application");
-
-					break;
+					fclose(ptr);
+					getch();
+					goto start;
+					
 				}
 				else
 				{
